@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const generateToken = (userId) =>{
     const payload = userId;
@@ -64,3 +65,13 @@ export const loginUser = async(req, res) =>{
     }
 }
 
+export const getUserData = async(req,res) =>{
+    console.log("inside")
+    try{
+        const {user} = req;
+        res.json({success:true, user})
+    } catch(error){
+        console.log(error.message);
+        res.json({success: false, message:error.message});
+    }
+}
