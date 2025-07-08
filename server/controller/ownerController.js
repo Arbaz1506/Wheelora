@@ -1,10 +1,10 @@
 import imagekit from "../config/imagekit.js";
 import Booking from "../models/booking.js";
-import Car from "../models/car.js";
+import Car from "../models/Car.js";
 import User from "../models/user.js";
 import fs from 'fs'
 
-export const changeRoleOwner = async(req,routes) =>{
+export const changeRoleOwner = async(req,res) =>{
     try{
       const {_id } = req.user;
       await User.findByIdAndUpdate(_id, {role: "owner"});
@@ -48,7 +48,7 @@ export const addCar = async(req,res) =>{
     }
 }
 
-export const getOwnerCars = async() =>{
+export const getOwnerCars = async(req,res) =>{
     try{
         const {_id } = req.user;
         const cars = await Car.find({owner: _id})
@@ -138,6 +138,7 @@ export const getDashboardData = async(req,res) =>{
 }
 
 export const updateUserImage = async(req,res) =>{
+    // console.log("inside update userImgae")
     try{
         const {_id} = req.user;
         const imageFile = req.file;
@@ -145,7 +146,7 @@ export const updateUserImage = async(req,res) =>{
         const fileBuffer = fs.readFileSync(imageFile.path)
         const response = await imagekit.upload({
             file: fileBuffer,
-            fineName : imageFile.originalname,
+            fileName : imageFile.originalname,
             folder: '/users'
         })
 
