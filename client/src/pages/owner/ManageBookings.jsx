@@ -10,7 +10,7 @@ const ManageBookings = () => {
   const [bookings,setBookings] = useState([]);
   
   const fetchOwnerBookings = async() =>{
-    try {
+    try { 
       const {data} = await axios.get('/api/bookings/owner')
       data.success ? setBookings(data.bookings) : toast.error(data.message)
       
@@ -33,8 +33,6 @@ const ManageBookings = () => {
       toast.error(error.message)
     }
   }
-
-  
 
   useEffect(()=>{
     fetchOwnerBookings();
@@ -78,7 +76,8 @@ const ManageBookings = () => {
 
                    <td className='p-3'>
                       {booking.status === 'pending' ? (
-                         <select onChange={e => changeBookingStatus(booking._id, e.target.value)} value={booking.status} className='px-2 py-1.5 mt-1 text-gray-500 border border-borderColor rounded-md outline-none '>
+                         <select onChange={e => changeBookingStatus(booking._id, e.target.value)} value={booking.status} 
+                         className='px-2 py-1.5 mt-1 text-gray-500 border border-borderColor rounded-md outline-none '>
                           <option value="pending">Pending</option>
                           <option value="cancelled">Cencelled</option>
                           <option value="confirmed">Confirmed</option>

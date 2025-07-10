@@ -2,14 +2,16 @@ import Booking from "../models/booking.js"
 import Car from "../models/Car.js";
 
 
-export const checkAvailability = async(car, pickupDate, returnDate) =>{
+const checkAvailability = async(car, pickupDate, returnDate) =>{
     const bookings = await Booking.find({
         car,
         pickupDate :{$lte: returnDate},
         returnDate: {$gte: pickupDate},
     })
 
-    return bookings.length === 0 ;
+    // console.log(bookings);
+
+    return bookings.length === 0 ; 
 }
 
 export const checkAvailabilityOfCar = async(req,res) =>{
@@ -35,6 +37,7 @@ export const checkAvailabilityOfCar = async(req,res) =>{
 }
 
 export const createBooking = async(req,res) =>{
+    // console.log(req);
     try{
       const {_id } = req.user;
       const {car, pickupDate,returnDate } = req.body;
@@ -47,7 +50,7 @@ export const createBooking = async(req,res) =>{
       const carData = await Car.findById(car);
       const picked = new Date(pickupDate);
       const returned = new Date(returnDate);
-      const noOfDays = Math.ceil((returned - picked) /(1000 * 60 * 60 * 24))
+      const noOfDays = Math.ceil((returned - picked) /(1000 * 60 * 60 * 24));
       const price = carData.pricePerDay * noOfDays ;
 
       await Booking.create({car, owner: carData.owner, user: _id, pickupDate, returnDate, price});
@@ -94,7 +97,7 @@ export const changeBookingStatus = async(req,res) =>{
         const {bookingId , status} = req.body
         const booking = await Booking.findById(bookingId);
 
-        if(booking.owner.toString() !== _id.to_String()){
+        if(booking.owner.toString() !== _id.toString()){
             return res.json({success: false, message: "Unauthorized"})
         }
 
