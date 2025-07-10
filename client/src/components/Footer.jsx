@@ -39,12 +39,11 @@ const Footer = () => {
                     </motion.div>
                 </div>
 
-                <motion.div 
-                initial = {{opacity:0 , y:20 }}
-                whileInView={{opacity: 1, y:0}}
-                transition={{duration:0.6, delay:0.4}}
-                className='flex flex-wrap justify-between w-1/2 gap-8'>
-                  <div>
+                {/* <div className='flex flex-wrap justify-between w-1/2 gap-8'>
+
+                </div> */}
+
+                <div>
                     <h2 className='text-base font-medium text-gray-800 uppercase'>Quick Links</h2>
                     <ul className='mt-3 flex flex-col gap-1.5'>
                         <li><a href="#">Home</a></li>
@@ -73,10 +72,6 @@ const Footer = () => {
                         <li>info@example.com</li>
                     </ul>
                 </div>
-
-
-                </motion.div>
-
 
             </motion.div>
 
