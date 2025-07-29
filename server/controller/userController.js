@@ -11,11 +11,11 @@ const generateToken = (userId) =>{
 
 export const registerUser = async(req,res) =>{
     try{
-        const {name, email, password} = req.body
+        const {name, email, password} = req.body;
         if(!name || !password ){
             return res.json({
                 success: false,
-                message: 'field all the fields'
+                message: 'fill all the fields'
             })
         }
 
