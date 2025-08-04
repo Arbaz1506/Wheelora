@@ -105,6 +105,7 @@ const CarDetails = () => {
           <div className='flex flex-col gap-2'>
             <label htmlFor="return-date">Return Date</label>
             <input value={returnDate} onChange={(e)=> setReturnDate(e.target.value)}
+            min = {pickupDate}
              type = "date" className='border border-borderColor px-3 py-2 rounded-lg '  required id='return-date' />
           </div>
 

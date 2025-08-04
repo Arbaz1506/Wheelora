@@ -19,7 +19,7 @@ const Login = () => {
             if(data.success){
                 navigate('/');
                 setToken(data.token);
-                localStorage.setItem('token',data.token )
+                localStorage.setItem('token',data.token)
                 setShowLogin(false)
             } else{
                 toast.error(data.message)

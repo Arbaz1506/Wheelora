@@ -54,8 +54,9 @@ const Hero = () => {
                <div className='flex flex-col items-start gap-2'>
                 <label htmlFor="return-date"> Return Date </label> 
                 <input 
-                  value={returnDate} 
+                  value={returnDate}  
                   onChange={e=> setReturnDate(e.target.value)} 
+                  min ={pickupDate}
                   type="date" id = "return-date"  
                   className='text-sm text-gray-500' required />
                </div>

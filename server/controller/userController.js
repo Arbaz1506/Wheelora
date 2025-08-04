@@ -43,7 +43,6 @@ export const registerUser = async(req,res) =>{
 export const loginUser = async(req, res) =>{
     try{
         const { email, password} = req.body;
-
         const user = await User.findOne({email})
 
         if(!user){
@@ -68,7 +67,6 @@ export const loginUser = async(req, res) =>{
 }
 
 export const getUserData = async(req,res) =>{
-    console.log("inside")
     try{
         const {user} = req;
         res.json({success:true, user})
