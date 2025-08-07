@@ -21,24 +21,24 @@ const checkAvailability = async (car, pickupDate, returnDate) => {
 };
 
 export const checkAvailabilityOfCar = async (req, res) => {
-  try {
-    const { location, pickupDate, returnDate } = req.body;
+    try {
+        const { location, pickupDate, returnDate } = req.body;
 
-    const cars = await Car.find({ location, isAvaliable: true });
+        const cars = await Car.find({ location, isAvaliable: true });
 
-    const availableCarsPromises = cars.map(async (car) => {
-      const availability = await checkAvailability(car._id, pickupDate, returnDate);
-      return { ...car._doc, isAvailable: availability.isAvailable };
-    });
+        const availableCarsPromises = cars.map(async (car) => {
+        const availability = await checkAvailability(car._id, pickupDate, returnDate);
+        return { ...car._doc, isAvailable: availability.isAvailable };
+        });
 
-    let availableCars = await Promise.all(availableCarsPromises);
-    availableCars = availableCars.filter(car => car.isAvailable === true);
+        let availableCars = await Promise.all(availableCarsPromises);
+        availableCars = availableCars.filter(car => car.isAvailable === true);
 
-    res.json({ success: true, availableCars });
-  } catch (error) {
-    console.log(error.message);
-    res.json({ success: false, message: error.message });
-  }
+        res.json({ success: true, availableCars });
+    } catch (error) {
+        console.log(error.message);
+        res.json({ success: false, message: error.message });
+    }
 };
 
 
@@ -51,7 +51,7 @@ export const createBooking = async (req, res) => {
     if (!availability.isAvailable) {
       return res.json({
         success: false,
-        message: `This car is already booked from ${new Date(availability.bookedFrom).toDateString()} to ${new Date(availability.bookedTo).toDateString()}`
+        message: `This car is already booked till ${new Date(availability.bookedTo).toDateString()}`
       });
     }
 
