@@ -3,9 +3,9 @@ import toast from 'react-hot-toast';
 import { useAppContext } from '../context/AppContext';
 
 const Login = () => {
-  const { setShowLogin, axios, setToken, navigate } = useAppContext();
+  const { setShowLogin, saveToken, navigate, axios } = useAppContext();
 
-  const [state, setState] = useState('login'); 
+  const [state, setState] = useState('login'); // 'login' or 'register'
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,6 +15,8 @@ const Login = () => {
     event.preventDefault();
     try {
       setLoading(true);
+
+      // Axios POST request
       const { data } = await axios.post(`/api/user/${state}`, {
         name,
         email,
@@ -22,21 +24,22 @@ const Login = () => {
       });
 
       if (data.success) {
+        saveToken(data.token); // ✅ set token in localStorage, axios header, and state
         navigate('/');
-        setToken(data.token);
-        localStorage.setItem('token', data.token);
         setShowLogin(false);
+        toast.success(state === 'login' ? 'Logged in successfully' : 'Account created successfully');
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    // Prevent scrolling while login modal is open
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'auto';
@@ -54,8 +57,7 @@ const Login = () => {
         className="relative z-[1000] bg-white w-80 sm:w-[352px] p-8 py-10 rounded-lg shadow-lg flex flex-col gap-4 text-sm text-gray-700"
       >
         <h2 className="text-2xl font-semibold text-center">
-          <span className="text-indigo-600">User</span>{' '}
-          {state === 'login' ? 'Login' : 'Sign Up'}
+          <span className="text-indigo-600">User</span> {state === 'login' ? 'Login' : 'Sign Up'}
         </h2>
 
         {state === 'register' && (
@@ -124,16 +126,10 @@ const Login = () => {
           type="submit"
           disabled={loading}
           className={`w-full py-2 rounded-md text-white transition-all ${
-            loading
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-indigo-600 hover:bg-indigo-700'
+            loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
           }`}
         >
-          {loading
-            ? 'Please wait...'
-            : state === 'register'
-            ? 'Create Account'
-            : 'Login'}
+          {loading ? 'Please wait...' : state === 'register' ? 'Create Account' : 'Login'}
         </button>
       </form>
     </div>
