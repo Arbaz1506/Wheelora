@@ -99,14 +99,18 @@ const CarDetails = () => {
           <div className='flex flex-col gap-2'>
             <label htmlFor="pickup-date" className='text-sm text-[var(--color-text)]'>Pickup Date</label>
             <input value={pickupDate} onChange={(e)=> setPickupDate(e.target.value)} 
-              type = "date" className='border border-[var(--color-borderColor)] px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)]' required id='pickup-date' min = {new Date().toISOString().split('T')[0]}/>
+              type = "date" 
+              className='border-2 border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-hover)] px-3 py-2 rounded-lg bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] appearance-none' 
+              required id='pickup-date' min = {new Date().toISOString().split('T')[0]}/>
           </div>
 
           <div className='flex flex-col gap-2'>
             <label htmlFor="return-date" className='text-sm text-[var(--color-text)]'>Return Date</label>
             <input value={returnDate} onChange={(e)=> setReturnDate(e.target.value)}
               min = {pickupDate}
-              type = "date" className='border border-[var(--color-borderColor)] px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)]'  required id='return-date' />
+              type = "date" 
+              className='border-2 border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-hover)] px-3 py-2 rounded-lg bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] appearance-none'  
+              required id='return-date' />
           </div>
 
           <button className='w-full bg-primary hover:bg-primary-dull transition-all py-3 font-medium text-white rounded-xl cursor-pointer'>Book Now</button>
