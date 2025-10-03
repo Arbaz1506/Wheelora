@@ -10,11 +10,11 @@ const NavbarOwner = () => {
 
 
   return (
-    <div className='flex items-center justify-between px-6 md:px-10 py-4 text-gray-500 border-b border-borderColor relative transition-all'>
-        <Link to='/' >
-          <img src={assets.logo} alt="" className='h-7' />
-        </Link>
-        <p>Welcome, {user?.name || "Owner"} </p>
+    <div className='flex items-center justify-between px-6 md:px-10 py-4 text-[var(--color-text)] border-b border-[var(--color-borderColor)] bg-[var(--color-surface)] relative transition-all'>
+      <Link to='/'>
+        <span className="text-2xl md:text-3xl font-bold cursor-pointer transition-colors text-[var(--color-accent)]">Wheelora</span>
+      </Link>
+      <p>Welcome, {user?.name || "Owner"} </p>
     </div>
   )
 }
