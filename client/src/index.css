@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+
+
 .focus-ring,
 button:focus-visible,
 input:focus-visible,
@@ -13,9 +19,7 @@ button:active, input:active, select:active, a:active {
   filter: brightness(0.95);
   box-shadow: 0 0 0 2px var(--color-accent-hover);
 }
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-@import "tailwindcss";
 
 *{
     font-family: "Outfit", sans-serif;

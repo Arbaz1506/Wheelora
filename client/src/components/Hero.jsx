@@ -20,7 +20,7 @@ const Hero = () => {
       initial={{ opacity:0 }}
       animate ={{ opacity:1 }}
       transition={{ duration: 0.8 }}
-      className='min-h-screen flex flex-col items-center justify-center gap-14 bg-[var(--color-bg-secondary)] text-center pt-24'>
+      className='min-h-screen flex flex-col items-center justify-center gap-14 bg-[var(--color-bg-secondary)] text-center pt-24 pb-16'>
       <motion.h1 
         initial={{y:50, opacity:0}}
         animate ={{y:0, opacity:1}}
@@ -40,10 +40,10 @@ const Hero = () => {
         animate ={{scale:1, y:0, opacity:1}}
         transition={{duration: 0.6, delay:0.4}}
         onSubmit={handleSearch}
-        className='flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-lg md:rounded-full w-full max-w-80 md:max-w-200 bg-[var(--color-surface)] shadow-lg border-2 border-[var(--color-accent)] outline outline-2 outline-[var(--color-accent-hover)] outline-offset-2'>
+        className='flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-lg md:rounded-full w-full max-w-80 md:max-w-200 bg-[var(--color-surface)] shadow-2xl mb-10'>
         <div className='flex flex-col md:flex-row items-start md:items-center gap-10 min-md:ml-8'>
           <div className='flex flex-col items-start gap-2'>
-            <select required value = {pickupLocation} onChange={(e) =>setPickupLocation(e.target.value)} className='bg-[var(--color-bg-secondary)] text-[var(--color-text)] border-2 border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-hover)] rounded px-3 py-2'>
+            <select required value = {pickupLocation} onChange={(e) =>setPickupLocation(e.target.value)} className='bg-[var(--color-bg-secondary)] text-[var(--color-text)] border-2 border-[var(--color-borderColor)] focus:outline-none focus:ring-2 focus:ring-[var(--color-borderColor)] rounded px-3 py-2'>
               <option value=""> Pickup Location </option>
               {cityList.map((city) => <option key={city} value = {city} > {city} </option>)}
             </select>
@@ -57,7 +57,8 @@ const Hero = () => {
                   onChange={e=> setPickupDate(e.target.value)} 
                   type="date" id = "picking-date" 
                   min={new Date().toISOString().split('T')[0]} 
-                  className='border-2 border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-hover)] bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] px-3 py-2 rounded text-sm appearance-none' required />
+                  placeholder="dd-mm-yyyy"
+                  className='border-2 border-[var(--color-borderColor)] focus:outline-none focus:ring-2 focus:ring-[var(--color-borderColor)] bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] px-3 py-2 rounded text-sm appearance-none' required />
                </div>
 
                <div className='flex flex-col items-start gap-2'>
@@ -67,7 +68,8 @@ const Hero = () => {
                   onChange={e=> setReturnDate(e.target.value)} 
                   min ={pickupDate}
                   type="date" id = "return-date"  
-                  className='border-2 border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-hover)] bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] px-3 py-2 rounded text-sm appearance-none' required />
+                  placeholder="dd-mm-yyyy"
+                  className='border-2 border-[var(--color-borderColor)] focus:outline-none focus:ring-2 focus:ring-[var(--color-borderColor)] bg-[#18181b] text-[var(--color-text)] placeholder-[var(--color-text-muted)] px-3 py-2 rounded text-sm appearance-none' required />
                </div>
                <motion.button
                 whileHover={{scale: 1.05}}
@@ -77,11 +79,6 @@ const Hero = () => {
                </motion.button>
             </div>
         </motion.form>
-        <motion.img
-        initial={{y:100, opacity: 0}}
-        animate={{y:0 , opacity: 1}}
-        transition={{ duration: 0.8 , delay:0.6 }}
-        src={assets.main_car} alt="car" className='max-h-74' />
     </motion.div>
   )
 }
