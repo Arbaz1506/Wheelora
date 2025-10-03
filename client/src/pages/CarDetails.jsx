@@ -91,27 +91,27 @@ const CarDetails = () => {
             </div>
         </div>
 
-        <form onSubmit={handleSubmit} 
-        className='shadow-lg h-max sticky top-18 roundex-xl p-6 space-y-6 text-gray-500'>
-          <p className='flex items-center justify-between text-2xl text-gray-800 font-semibold'> {currency} {car.pricePerDay} <span className='text-base text-gray-400 font-normal '>per day</span></p>
+  <form onSubmit={handleSubmit} 
+  className='shadow-lg h-max md:sticky md:top-18 rounded-xl p-4 md:p-6 space-y-6 text-gray-500 w-full max-w-xs md:max-w-sm mx-auto bg-[var(--color-surface)] border border-[var(--color-borderColor)]'>
+          <p className='flex items-center justify-between text-xl md:text-2xl text-[var(--color-text)] font-semibold'> {currency} {car.pricePerDay} <span className='text-base text-[var(--color-text-muted)] font-normal '>per day</span></p>
 
           <hr  className='border-borderColor my-6'/>
           <div className='flex flex-col gap-2'>
-            <label htmlFor="pickup-date">Pickup Date</label>
+            <label htmlFor="pickup-date" className='text-sm text-[var(--color-text)]'>Pickup Date</label>
             <input value={pickupDate} onChange={(e)=> setPickupDate(e.target.value)} 
-            type = "date" className='border border-borderColor px-3 py-2 rounded-lg' required id='pickup-date' min = {new Date().toISOString().split('T')[0]}/>
+              type = "date" className='border border-[var(--color-borderColor)] px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)]' required id='pickup-date' min = {new Date().toISOString().split('T')[0]}/>
           </div>
 
           <div className='flex flex-col gap-2'>
-            <label htmlFor="return-date">Return Date</label>
+            <label htmlFor="return-date" className='text-sm text-[var(--color-text)]'>Return Date</label>
             <input value={returnDate} onChange={(e)=> setReturnDate(e.target.value)}
-            min = {pickupDate}
-             type = "date" className='border border-borderColor px-3 py-2 rounded-lg '  required id='return-date' />
+              min = {pickupDate}
+              type = "date" className='border border-[var(--color-borderColor)] px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)]'  required id='return-date' />
           </div>
 
           <button className='w-full bg-primary hover:bg-primary-dull transition-all py-3 font-medium text-white rounded-xl cursor-pointer'>Book Now</button>
 
-          <p className='text-center text-sm'>No Credit card required to reserve</p>
+          <p className='text-center text-xs md:text-sm text-[var(--color-text-muted)]'>No Credit card required to reserve</p>
 
         </form>
         
