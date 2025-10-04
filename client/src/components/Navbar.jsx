@@ -34,7 +34,7 @@ const Navbar = () => {
             style={{height: '72px', minHeight: '56px'}}
         >
             {/* Wheelora Brand */}
-            <Link to='/'>
+            <Link to='/' onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
                 <motion.span
                     initial={{ color: "var(--color-accent)" }}
                     whileHover={{ scale: 1.1, color: "var(--color-accent-hover)" }}

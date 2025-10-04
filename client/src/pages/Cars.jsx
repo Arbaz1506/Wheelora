@@ -59,7 +59,7 @@ const Cars = () => {
   
   return (
     <div className='bg-[var(--color-bg)] min-h-screen'>
-      <div className='flex flex-col items-center py-20 bg-[var(--color-bg-secondary)] max-md:px-4'>
+  <div className='flex flex-col items-center py-20 bg-[var(--color-bg-secondary)] max-md:px-4 mt-28'>
         <Title title='Available Cars' subTitle='Browse our selection of premium vehicles available for your next adventure' />
         <div className='flex items-center bg-[var(--color-surface)] px-4 mt-6 max-w-140 w-full h-12 rounded-full shadow border border-[var(--color-borderColor)]'>
           <img src={assets.search_icon} alt="" className='w-4.5 h-4.5 mr-2'/>
